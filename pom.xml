@@ -6,10 +6,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>pt.ist</groupId>
-  <artifactId>fenix-framework</artifactId>
+  <artifactId>fenix-framework-examples</artifactId>
   <version>1.0</version>
   <packaging>pom</packaging>
-  <name>fenix-framework</name>
+  <name>fenix-framework-examples</name>
   <url>http://fenix-ashes.ist.utl.pt</url>
 
   <properties>
@@ -18,11 +18,7 @@
   </properties>
 
   <modules>
-    <module>dml</module>
-    <module>dml-fenix</module>
-    <module>dml-maven-plugin</module>
-    <module>fenix-framework-core</module>
-    <module>fenix-framework-archetype</module>
+    <module>hello-world</module>
   </modules>
 
 </project>
