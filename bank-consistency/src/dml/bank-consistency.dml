@@ -20,8 +20,17 @@ class Company {
   String companyName;
 }
 
-
-
+class Thing {
+  Integer size;
+}
+	
+class Animal extends Thing {
+  Integer age;
+}
+	
+class Dog extends Animal {
+  String name;
+}
 
 
 relation ClientClientInfo {

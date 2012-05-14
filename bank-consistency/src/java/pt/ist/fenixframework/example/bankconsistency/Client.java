@@ -23,15 +23,28 @@ public class Client extends Client_Base {
 	return getClass().getSimpleName() + " [" + getIdInternal() + "] " + getName();
     }
 
-    @ConsistencyPredicate
-    public boolean checkMultiplicityOfAccount() {
-	return hasAnyAccounts();
+    public int getTotalBalance() {
+	int totalBalance = 0;
+	for (Account account : getAccounts()) {
+	    totalBalance += account.getBalance();
+	}
+	return totalBalance;
     }
 
-    /*@ConsistencyPredicate
-    public boolean allowChanges() {
-    return false;
-    }*/
+    @ConsistencyPredicate
+    public boolean checkTotalBalancePositive() {
+	return getTotalBalance() >= 0;
+    }
+
+    @ConsistencyPredicate
+    public boolean allowCreation() {
+	return true;
+    }
+
+    @ConsistencyPredicate
+    public boolean checkHasIdNumber() {
+	return !getClientInfo().getIdNumber().isEmpty();
+    }
 
     /*@ConsistencyPredicate
     public boolean performIllegalWrite() {
