@@ -179,7 +179,7 @@ public class BankConsistencyApplication extends BankConsistencyApplication_Base 
 	private static void printDomainObjectDependencies(AbstractDomainObject obj) {
 	    DomainMetaObject dependedMetaObject = null;
 	    try {
-		Method getMetaObjectMethod = AbstractDomainObject.class.getDeclaredMethod("getMetaObject");
+		Method getMetaObjectMethod = AbstractDomainObject.class.getDeclaredMethod("getDomainMetaObject");
 		getMetaObjectMethod.setAccessible(true);
 		dependedMetaObject = (DomainMetaObject) getMetaObjectMethod.invoke(obj);
 	    } catch (SecurityException e) {
