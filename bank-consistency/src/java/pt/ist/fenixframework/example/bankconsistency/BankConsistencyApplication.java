@@ -111,10 +111,7 @@ public class BankConsistencyApplication extends BankConsistencyApplication_Base 
 		classDescription += " extends ^ " + metaSuperclass.getDomainClass();
 	    }
 	    System.out.println(classDescription);
-	    System.out.println(metaClass.getMetaObjectCount() + " existing objects.");
-	    if (metaClass.getMetaObjectCount() != metaClass.getExistingDomainMetaObjectsCount()) {
-		System.out.println("\t\t\t WARNING: The meta object count of this meta class is INCONSISTENT.");
-	    }
+	    System.out.println(metaClass.getExistingDomainMetaObjectsCount() + " existing objects.");
 	    printDeclaredKnownConsistencyPredicates(metaClass);
 	    visitedMetaClasses.add(metaClass);
 
