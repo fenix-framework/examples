@@ -40,7 +40,7 @@
 
   <target name="compile" depends="clean-all, generate-domain" description="Compiles all the source code">
     <mkdir dir="${build.dir}"/>
-    <javac destdir="${build.dir}" extdirs="${framework.lib.dir}" target="1.6" debug="on" encoding="${javac.encoding}">
+    <javac destdir="${build.dir}" extdirs="${framework.lib.dir}" target="1.7" debug="on" encoding="${javac.encoding}">
 		<src path="${java.src.dir}"/>
 		<src path="${src.gen.dir}"/>
 		<classpath refid="project.class.path"/>
