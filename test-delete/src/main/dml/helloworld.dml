@@ -1,0 +1,30 @@
+package pt.ist.fenixframework.example.helloworld;
+
+class HelloWorldApplication;
+
+class Person {
+  String name;
+}
+
+class Contact {
+	String phoneNumber;
+}
+
+relation PersonContact {
+	Person playsRole person {
+		multiplicity 1..1;
+	}
+	Contact playsRole contact {
+		multiplicity 0..1;
+	}
+}
+
+relation KnownPeople {
+  Person playsRole person {
+    multiplicity 0..*;
+  }
+
+  HelloWorldApplication playsRole app {
+    multiplicity 1..1;
+  }
+}
