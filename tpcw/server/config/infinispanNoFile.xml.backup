@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan>
+  <default>
+    <!-- Default
+         transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+         provides a DummyTransactionManager, which according to documentation
+         (http://docs.jboss.org/infinispan/4.0/apidocs/org/infinispan/transaction/tm/DummyTransactionManager.html):
+         "Simple transaction manager implementation that maintains transaction
+         state in memory only." 
+         
+         Is it enough?
+    -->
+    <!-- <transaction -->
+    <!--   syncRollbackPhase="false" -->
+    <!--   syncCommitPhase="false" -->
+    <!--   useEagerLocking="false"/> -->
+    <transaction
+        transactionManagerLookupClass="org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup"
+        syncRollbackPhase="false"
+        syncCommitPhase="false"
+        useEagerLocking="false"/>
+
+
+    <!-- Should we enable eviction?  I think not. -->
+    <eviction strategy="NONE" maxEntries="-1"/>
+    <!-- <eviction strategy="LRU" wakeUpInterval="2000" maxEntries="50000"/> -->
+
+    <expiration wakeUpInterval="-1" />
+
+    <!-- Amazingly using REPEATABLE_READ instead of the default READ_COMMITTED
+         increases performance.  Why?  Checkout
+         org.infinispan.interceptors.LockingInterceptor.doAfterCall().  This
+         method takes a lot of CPU when putting values under READ_COMMITTED!
+         -->
+    <locking isolationLevel="REPEATABLE_READ" writeSkewCheck="true" />
+  </default>
+</infinispan>
+
