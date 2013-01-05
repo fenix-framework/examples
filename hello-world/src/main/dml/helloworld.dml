@@ -15,3 +15,8 @@ relation KnownPeople {
     multiplicity 1..1;
   }
 }
+
+relation DomainRootHasApplication {
+    HelloWorldApplication playsRole app;
+    .pt.ist.fenixframework.DomainRoot playsRole;
+}
