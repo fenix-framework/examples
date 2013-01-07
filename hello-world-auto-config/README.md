@@ -1,3 +1,15 @@
+# About this application
+
+This is a very simple hello-world-like application that shows the basics of
+how to develop an application using the Fenix Framework.  Have a look at the
+Domain Model file in
+[src/main/dml/helloworld.dml](src/main/dml/helloworld.dml).
+
+In this application we use the file-based configuration.  The
+`fenix-framework-<backend-here>.properties` files allows for automatic
+initialization of the framework (replace `<backend-here>` with the name of the
+backend to configure).
+
 # Compiling
 
 Just do:
