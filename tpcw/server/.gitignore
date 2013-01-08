@@ -3,4 +3,6 @@ classes/
 src_gen/
 PutObjectStoreDirHere/
 dist/
+transaction.log
+
 

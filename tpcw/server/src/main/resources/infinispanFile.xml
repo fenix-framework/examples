@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan>
+  <default>
+    <transaction  
+      transactionManagerLookupClass="org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup"
+      syncRollbackPhase="false"
+      syncCommitPhase="false"
+      useEagerLocking="false"/>
+    <eviction strategy="LRU" wakeUpInterval="2000" maxEntries="50000"/>
+    <loaders passivation="false" shared="true" preload="false">
+       <loader class="org.infinispan.loaders.file.FileCacheStore" fetchPersistentState="true" ignoreModifications="false" purgeOnStartup="false">
+         <!-- See the documentation for more configuration examples and flags. -->
+         <properties>
+           <property name="location" value="/tmp/infinispan1"/>
+         </properties>
+       </loader>
+     </loaders>
+  </default>
+</infinispan>
