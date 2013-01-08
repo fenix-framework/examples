@@ -10,7 +10,6 @@
     <name>hs-example</name>
 
     <properties>
-        <!-- NOTE THAT CURRENTLY HIBERNATE-SEARCH ONLY WORKS CORRECTLY FOR THE INFINISPAN BACKEND -->
         <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.mem.MemCodeGenerator</fenixframework.code.generator> -->
         <fenixframework.code.generator>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</fenixframework.code.generator>
         <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</fenixframework.code.generator> -->
@@ -146,11 +145,11 @@
             <artifactId>fenix-framework-hibernate-search</artifactId>
             <version>2.0-SNAPSHOT</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>pt.ist</groupId>
             <artifactId>fenix-framework-backend-ogm</artifactId>
             <version>2.0-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
