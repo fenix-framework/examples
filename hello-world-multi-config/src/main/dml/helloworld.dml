@@ -1,0 +1,22 @@
+package pt.ist.fenixframework.example.helloworld;
+
+class HelloWorldApplication;
+
+class Person {
+  String name;
+}
+
+relation KnownPeople {
+  Person playsRole person {
+    multiplicity 0..*;
+  }
+
+  HelloWorldApplication playsRole app {
+    multiplicity 1..1;
+  }
+}
+
+relation DomainRootHasApplication {
+    HelloWorldApplication playsRole app;
+    .pt.ist.fenixframework.DomainRoot playsRole;
+}
