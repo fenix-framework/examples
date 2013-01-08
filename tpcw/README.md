@@ -117,7 +117,7 @@ another version make sure you first remove the previously deployed code with:
 ### Check that the application is successfully deployed
 
 Go to [TPC-W's home page][] and you should see a page similar to
-[this](docs/TPC-W_Home_Page.png).  Images in the loaded page do not show.
+[this](tpcw/docs/TPC-W_Home_Page.png).  Images in the loaded page do not show.
 This is not an error.  It occurs simply because we didn't package the site's
 images in the web application.
 
@@ -195,8 +195,8 @@ every second of the execution.  It also plots a curve with the average WIPS
 for the 30 seconds around a given point, and a line with the overall average
 WIPS.
 
-This is an [example](docs/Freemat_Plot.png) of the kind of FreeMat plot you
-can expect to see.
+This is an [example](tpcw/docs/Freemat_Plot.png) of the kind of FreeMat plot
+you can expect to see.
 
 ## A sample script to automate stuff
 
