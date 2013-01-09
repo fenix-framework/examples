@@ -97,123 +97,12 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 	throws IOException, ServletException {
 		PrintWriter out = res.getWriter();
 		String htmlResponse = "";
-		/*
-		String selectedServerFullPath = "http://localhost:8080/tpcw_1";
-		String servletPath = req.getServletPath();
-		String queryString = req.getQueryString();
-		String newUrl = "";
-		
-		newUrl = selectedServerFullPath + servletPath;
-		if (queryString != null) newUrl = newUrl + "?" + queryString;
-		URL url = new URL(newUrl);
-		*/
 		URL url = LoadBalance.getUrl(req);
 		
 		String html = TPCW_Util.getHTML(url);
 		out.println(html);
 		out.close();
 		return;
-		/*
-		int i;
-		String url;
-		PrintWriter out = res.getWriter();
-		// Set the content type of this servlet's result.
-		res.setContentType("text/html");
-		
-		HttpSession session = req.getSession(false);
-		
-		String SHOPPING_IDstr = req.getParameter("SHOPPING_ID");
-		int SHOPPING_ID = Integer.parseInt(SHOPPING_IDstr);
-		String C_IDstr = req.getParameter("C_ID");
-		int C_ID = Integer.parseInt(C_IDstr);
-		
-		String CC_TYPE = req.getParameter("CC_TYPE");
-		String CC_NUMBERstr = req.getParameter("CC_NUMBER");
-		long CC_NUMBER = Long.parseLong(CC_NUMBERstr);
-		String CC_NAME = req.getParameter("CC_NAME");
-		String CC_EXPIRYstr = req.getParameter("CC_EXPIRY");
-		java.util.Date CC_EXPIRY = new java.util.Date(CC_EXPIRYstr);
-		String SHIPPING = req.getParameter("SHIPPING");
-		
-		String STREET_1 = req.getParameter("STREET_1");
-		BuyConfirmResult result = null;
-		if(!STREET_1.equals("")) {
-			String STREET_2 = req.getParameter("STREET_2");
-			String CITY = req.getParameter("CITY");
-			String STATE = req.getParameter("STATE");
-			String ZIP = req.getParameter("ZIP");
-			String COUNTRY = req.getParameter("COUNTRY");
-			result = TPCW_Database.doBuyConfirm(SHOPPING_ID, C_ID,CC_TYPE, 
-												CC_NUMBER, CC_NAME, 
-												new java.sql.Date(CC_EXPIRY.getTime()), 
-												SHIPPING, STREET_1, STREET_2,
-												CITY, STATE, ZIP, COUNTRY);
-		}
-		else result = TPCW_Database.doBuyConfirm(SHOPPING_ID, C_ID, 
-			CC_TYPE,CC_NUMBER,CC_NAME, new java.sql.Date(CC_EXPIRY.getTime()), SHIPPING);
-		
-		
-		//Make Database call to read the current countent of the shopping
-		//cart, etc
-		
-		//Make a call to database to update the order table
-		//and do ssl stuff, (We are not currently passing info to/from a PGE).
-		
-		//Print out the HTML page
-		out.print("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD W3 HTML//EN\"> <HTML>\n");
-		out.print("<HEAD><TITLE>Order Confirmation</TITLE></HEAD> ");
-		out.print("<BODY BGCOLOR=\"#FFFFFF\">"); 
-		out.print("<H1 ALIGN=\"CENTER\">TPC Web Commerce Benchmark " + 
-		"(TPC-W)</H1>\n");
-		out.print("<H2 ALIGN=\"CENTER\">Buy Confirm Page</H2>\n");
-		out.print("<BLOCKQUOTE><BLOCKQUOTE><BLOCKQUOTE><BLOCKQUOTE>\n");
-		out.print("<H2 ALIGN=\"LEFT\">Order Information:</H2>\n");
-		out.print("<TABLE BORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"0\">\n");
-		out.print("<TR><TD><B>Qty</B></TD><TD><B>Product</B></TD></TR> ");
-		
-		//For each item in the shopping cart, print out its contents
-		for(i = 0; i < result.cart.lines.size(); i++){
-			CartLine line = (CartLine) result.cart.lines.elementAt(i);
-			out.print("<TR><TD VALIGN=\"TOP\">" + line.scl_qty+ "</TD>\n");
-			out.print("<TD VALIGN=\"TOP\">Title:<I>" + line.scl_title 
-			+ "</I> - Backing: " +line.scl_backing 
-			+ "<BR>SRP. $" + line.scl_srp + 
-			"<FONT COLOR=\"#aa0000\"><B>Your Price: $" + 
-			line.scl_cost + "</FONT> </TD></TR>\n");
-		}
-		out.print("</TABLE><H2 ALIGN=\"LEFT\">Your Order has been processed.</H2>\n"); 
-		out.print("<TABLE BORDER=\"1\" CELLPADDING=\"5\" CELLSPACING=\"0\">\n");
-		out.print("<TR><TD><H4>Subtotal with discount:</H4></TD>\n");
-		out.print("<TD> <H4>$" + result.cart.SC_SUB_TOTAL +"</H4></TD></TR>");
-		out.print("<TR><TD><H4>Tax (8.25%):</H4></TD>\n");
-		out.print("<TD><H4>$" + result.cart.SC_TAX + "</H4></TD></TR>\n");
-		out.print("<TR><TD><H4>Shipping &amp; Handling:</H4></TD>\n");
-		out.print("<TD><H4>$"+ result.cart.SC_SHIP_COST + "</H4></TD></TR>\n");
-		out.print("<TR><TD> <H4>Total:</H4></TD>\n");
-		out.print("<TD><H4>$" + result.cart.SC_TOTAL + "</H4></TD></TR></TABLE>\n");
-		out.print("<P><BR></P><H2>Order Number: " + result.order_id + "</H2>\n");
-		out.print("<H1>Thank you for shopping at TPC-W</H1> <P></P>\n");
-		
-		//Add the buttons
-		url = "TPCW_search_request_servlet?SHOPPING_ID=" + SHOPPING_ID;
-		if(C_IDstr != null)
-			url = url  + "&C_ID=" + C_IDstr;
-		out.print("<CENTER><P><A HREF=\"" + 
-		res.encodeUrl(url));
-		out.print("\"><IMG SRC=\"../tpcw/Images/search_B.gif\"" +
-		" ALT=\"Search\"></A>\n");
-		
-		url = "TPCW_home_interaction?SHOPPING_ID=" + SHOPPING_ID;
-		if(C_IDstr != null)
-			url = url  + "&C_ID=" + C_IDstr;
-		
-		out.print("<A HREF=\"" + res.encodeUrl(url));
-		out.print("\"><IMG SRC=\"../tpcw/Images/home_B.gif\" ALT=\"Home\"></A>\n");
-		out.print("</CENTER></BLOCKQUOTE></BLOCKQUOTE></BLOCKQUOTE>" + 
-		"</BLOCKQUOTE></BODY></HTML>");
-		out.close();
-		return;
-		*/
 	}
 	
 }
