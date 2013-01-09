@@ -9,42 +9,40 @@ import pt.ist.dap.structure.DataReader;
 
 
 public class LDAPolicy extends LoadBalancePolicy {
-	private int numberOfServers;
-	private int[] serverRequests;
-	private boolean stats = false;
+	protected int numberOfServers;
+	protected int[] serverRequests;
+	protected boolean stats = false;
 	/*
 	methodName->methodId	//methodIds
 	methodId->clusterId
 	methodName.hashCode->clusterId
 	id->methodName			//reverseMethodIds
 	*/
-	private HashMap<String,Integer> servletNameToClusterIds;
-	private HashMap<Integer,Integer> methodHashCodesToClusterIds;
-	private String localPath = "/home/sgarbatov/work/alchemist/tpcw/newData/clustering/results/";
-	
-	
-	
+	protected HashMap<String,Integer> servletNameToClusterIds;
+	protected HashMap<Integer,Integer> methodHashCodesToClusterIds;
+	//protected String localPath = "path_to_tpcw_folder/tpcw/loadbalancer/clustering/results/4clusters_lda/";
+	protected String localPath = "path_to_tpcw_folder/tpcw/loadbalancer/clustering/results/3clusters_lda/";
+
+
 	public LDAPolicy(String[] serverAddresses) {
 		super(serverAddresses);
 		numberOfServers = serverAddresses.length;
 		serverRequests = new int[numberOfServers];
-		
-		//localPath = localPath + "3clusters_fixed_servlet_names/";
-		localPath = localPath + "3clusters_lard/";
-		System.out.println("Loading input data from "+localPath);
+
+		//System.out.println("Loading input data from "+localPath);
 
 		servletNameToClusterIds = (HashMap<String,Integer>) DataReader.loadSerializedObject(localPath+"servletNameToClusterId.serialized");
 		methodHashCodesToClusterIds = (HashMap<Integer,Integer>) DataReader.loadSerializedObject(localPath+"hashCodesToClusterIds.serialized");
-		
+
 		if (servletNameToClusterIds != null && methodHashCodesToClusterIds != null) {
 			for (String s : servletNameToClusterIds.keySet()) {
-				System.out.println("Servlet["+s+"] in cluster["+methodHashCodesToClusterIds.get(s.hashCode())+"]");
+				//System.out.println("Servlet["+s+"] in cluster["+methodHashCodesToClusterIds.get(s.hashCode())+"]");
 			}
 		} else {
 			throw new Error("Could not load properly the load balancing input data. Terminating application");
 		}
 	}
-	
+
 	private String getServerAddress(String servletName) {
 		//System.out.println("finding server for "+servletName);
 		Integer res = methodHashCodesToClusterIds.get(servletName.hashCode());
@@ -52,11 +50,11 @@ public class LDAPolicy extends LoadBalancePolicy {
 			//System.out.println("servlet "+servletName+" going to "+res);
 			return serverAddresses[res % numberOfServers];
 		} else {
-			System.out.println("could not find info on servlet "+servletName);
+			//System.out.println("could not find info on servlet "+servletName);
 			return serverAddresses[0];
 		}
 	}
-	
+
 	public URL getUrl(HttpServletRequest req) throws IOException {
 		String servletPath = req.getServletPath();
 
@@ -64,16 +62,16 @@ public class LDAPolicy extends LoadBalancePolicy {
 		String queryString = req.getQueryString();
 		String newUrl = "";
 		HttpSession session = req.getSession(false);
-		
+
 		newUrl = selectedServerFullPath + servletPath;
-		
+
 		if (req.getRequestedSessionId() != null) newUrl = newUrl + ";jsessionid=" + req.getRequestedSessionId();
-		
+
 		if (queryString != null) newUrl = newUrl + "?" + queryString;
-		
+
 		//if (session != null) newUrl = newUrl + ";jsessionid=" + session.getId();
-		
+
 		return new URL(newUrl);
 	}
-	
+
 }
