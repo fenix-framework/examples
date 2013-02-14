@@ -18,7 +18,7 @@
         <fenixframework.code.generator>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</fenixframework.code.generator>
         <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</fenixframework.code.generator> -->
 
-        <version.fenixframework>2.0-SNAPSHOT</version.fenixframework>
+        <version.fenixframework>2.1-SNAPSHOT</version.fenixframework>
         <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
         <version.slf4j.api>1.7.2</version.slf4j.api>
     </properties>
@@ -105,26 +105,16 @@
     </dependencies>
 
     <pluginRepositories>
-      <pluginRepository>
-        <id>fenix-framework-cloudtm-repository</id>
-        <url>https://fenix-ashes.ist.utl.pt/nexus/content/repositories/fenix-framework-cloudtm-repository</url>
-      </pluginRepository>
+        <pluginRepository>
+            <id>fenix-ashes-maven-repository</id>
+            <url>https://fenix-ashes.ist.utl.pt/maven-public</url>
+        </pluginRepository>
     </pluginRepositories>
 
     <repositories>
         <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
+            <id>fenix-ashes-maven-repository</id>
+            <url>https://fenix-ashes.ist.utl.pt/maven-public</url>
         </repository>
     </repositories>
 
