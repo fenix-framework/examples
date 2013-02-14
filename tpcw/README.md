@@ -38,11 +38,13 @@ interacting with the application.
 ### Requirements
 
 To run the benchmark:
-* Apache Tomcat 6.x (should work on 7+ versions but hasn't been tested)
-* JDK >= 1.5
 
-To view the measurement results
-* FreeMat
+  * Apache Tomcat 6.x (should work on 7+ versions but hasn't been tested)
+  * JDK >= 1.5
+
+To plot the measurement results:
+
+  * FreeMat
 
 ### Get the source code
 
