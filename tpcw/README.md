@@ -95,7 +95,7 @@ The values shown are the default. They represent:
   * `NUM_EBS`: the maximum number of emulated browsers that TPC-W will need to
     support. It must be greater than 0.
 
-If the `package` commando succeeded you should be able to deploy the
+If the `package` command succeeded you should be able to deploy the
 application with:
 
     mvn tomcat6:deploy -Dtomcat.username=<username> -Dtomcat.password=<password>
