@@ -14,9 +14,7 @@ public class Main {
     public static void main(final String[] args) {
         final URL [] dmlFiles =
             Config.resourcesToURLArray("fenix-framework-domain-root.dml",
-                                       "fenix-framework-bplustree-domain-object.dml",
                                        "fenix-framework-adt-bplustree.dml",
-                                       "fenix-framework-indexes.dml",
                                        "helloworld.dml");
 
         MultiConfig configs = new MultiConfig();
