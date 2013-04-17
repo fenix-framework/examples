@@ -14,9 +14,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!--  PICK ONE CODE GENERATOR HERE BY UNCOMMENTING THE CORRECT VALUE -->
-        <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.mem.MemCodeGenerator</fenixframework.code.generator> -->
-        <fenixframework.code.generator>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</fenixframework.code.generator>
-        <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</fenixframework.code.generator> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.mem.MemCodeGenerator</code.generator.class> -->
+        <code.generator.class>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</code.generator.class>
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</code.generator.class> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstm.JVSTMCodeGenerator</code.generator.class> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstm.infinispan.JvstmIspnCodeGenerator</code.generator.class> -->
 
         <version.fenixframework>2.1-SNAPSHOT</version.fenixframework>
         <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
@@ -41,7 +43,7 @@
                 <artifactId>ff-maven-plugin</artifactId>
                 <version>${version.fenixframework}</version>
                 <configuration>
-                    <codeGeneratorClassName>${fenixframework.code.generator}</codeGeneratorClassName>
+                    <codeGeneratorClassName>${code.generator.class}</codeGeneratorClassName>
                 </configuration>
                 <executions>
                     <execution>
@@ -96,6 +98,16 @@
         <dependency>
             <groupId>pt.ist</groupId>
             <artifactId>fenix-framework-backend-ogm</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-common</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-infinispan</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
