@@ -15,9 +15,9 @@
 
         <!--  PICK ONE CODE GENERATOR HERE BY UNCOMMENTING THE CORRECT VALUE -->
         <!-- <code.generator.class>pt.ist.fenixframework.backend.mem.MemCodeGenerator</code.generator.class> -->
-        <code.generator.class>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</code.generator.class>
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</code.generator.class> -->
         <!-- <code.generator.class>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</code.generator.class> -->
-        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstm.JVSTMCodeGenerator</code.generator.class> -->
+        <code.generator.class>pt.ist.fenixframework.backend.jvstm.JVSTMCodeGenerator</code.generator.class>
         <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstm.infinispan.JvstmIspnCodeGenerator</code.generator.class> -->
 
         <version.fenixframework>2.1-SNAPSHOT</version.fenixframework>
@@ -54,6 +54,33 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-mem-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-infinispan-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-ogm-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-common-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-infinispan-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -87,27 +114,27 @@
     <dependencies>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-mem</artifactId>
+            <artifactId>fenix-framework-backend-mem-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-infinispan</artifactId>
+            <artifactId>fenix-framework-backend-infinispan-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-ogm</artifactId>
+            <artifactId>fenix-framework-backend-ogm-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-jvstm-common</artifactId>
+            <artifactId>fenix-framework-backend-jvstm-common-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-jvstm-infinispan</artifactId>
+            <artifactId>fenix-framework-backend-jvstm-infinispan-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
