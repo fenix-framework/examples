@@ -20,7 +20,7 @@ public class Publisher extends Publisher_Base {
 
     @Override
     @ContainedIn
-    public java.util.Set<test.Book> getBooksPublished() {
-        return super.getBooksPublished();
+    public java.util.Set<test.Book> getPublishedBookSet() {
+        return super.getPublishedBookSet();
     }
 }

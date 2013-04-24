@@ -41,12 +41,12 @@ public class MainApp {
 
         // Authors
         for (int i = 0; i < AUTH_COUNT; i++) {
-            domainRoot.addTheAuthors(new Author("Auth" + i));
+            domainRoot.addTheAuthor(new Author("Auth" + i));
         }
 
         // Publishers
         for (int i = 0; i < PUB_COUNT; i++) {
-            domainRoot.addThePublishers(new Publisher("Pub" + i));
+            domainRoot.addThePublisher(new Publisher("Pub" + i));
         }
 
         // Books
@@ -65,7 +65,7 @@ public class MainApp {
                     break;
             }
 
-            domainRoot.addTheBooks(book);
+            domainRoot.addTheBook(book);
         }
     }
 
@@ -80,7 +80,7 @@ public class MainApp {
 
         logger.debug("Find ScifiBook3*3: " + performWildcardQuery(ScifiBook.class, "bookName", "book3*3"));
 
-        logger.debug("Find Scifi Books by Auth0: " + performQuery(ScifiBook.class, "authors.id",
+        logger.debug("Find Scifi Books by Auth0: " + performQuery(ScifiBook.class, "authorSet.id",
                 getAuthorByName("Auth0").getExternalId()));
     }
 
@@ -90,13 +90,13 @@ public class MainApp {
 
         Author auth0 = getAuthorByName("Auth0");
         for (int i = 0; i < 20; i++) {
-            auth0.addBooks(getBookByName("Book" + i));
+            auth0.addBook(getBookByName("Book" + i));
         }
     }
 
     @Atomic
     public static void doMoreQueries() {
-        logger.debug("Find Scifi Books by Auth0: " + performQuery(ScifiBook.class, "authors.id",
+        logger.debug("Find Scifi Books by Auth0: " + performQuery(ScifiBook.class, "authorSet.id",
                 getAuthorByName("Auth0").getExternalId()));
     }
 
@@ -141,7 +141,7 @@ public class MainApp {
     @Atomic
     public static Author getAuthorByName(String authorName) {
         DomainRoot domainRoot = FenixFramework.getDomainRoot();
-        for (Author author : domainRoot.getTheAuthors()) {
+        for (Author author : domainRoot.getTheAuthorSet()) {
             if (author.getName().equals(authorName)) {
                 return author;
             }
@@ -152,7 +152,7 @@ public class MainApp {
     @Atomic
     public static Book getBookByName(String bookName) {
         DomainRoot domainRoot = FenixFramework.getDomainRoot();
-        for (Book book : domainRoot.getTheBooks()) {
+        for (Book book : domainRoot.getTheBookSet()) {
             if (book.getBookName().equals(bookName)) {
                 return book;
             }
@@ -163,7 +163,7 @@ public class MainApp {
     @Atomic
     public static Publisher getPublisherByName(String publisherName) {
         DomainRoot domainRoot = FenixFramework.getDomainRoot();
-        for (Publisher publisher : domainRoot.getThePublishers()) {
+        for (Publisher publisher : domainRoot.getThePublisherSet()) {
             if (publisher.getPublisherName().equals(publisherName)) {
                 return publisher;
             }

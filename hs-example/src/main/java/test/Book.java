@@ -41,7 +41,7 @@ public class Book extends Book_Base {
 
     @Override
     @IndexedEmbedded
-    public java.util.Set<test.Author> getAuthors() {
-        return super.getAuthors();
+    public java.util.Set<test.Author> getAuthorSet() {
+        return super.getAuthorSet();
     }
 }

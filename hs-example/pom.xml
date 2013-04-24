@@ -10,9 +10,13 @@
     <name>hs-example</name>
 
     <properties>
-        <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.mem.MemCodeGenerator</fenixframework.code.generator> -->
-        <fenixframework.code.generator>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</fenixframework.code.generator>
-        <!-- <fenixframework.code.generator>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</fenixframework.code.generator> -->
+        <!--  PICK ONE CODE GENERATOR HERE BY UNCOMMENTING THE CORRECT VALUE -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.mem.MemCodeGenerator</code.generator.class> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</code.generator.class> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</code.generator.class> -->
+        <code.generator.class>pt.ist.fenixframework.backend.jvstm.JVSTMCodeGenerator</code.generator.class>
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstm.infinispan.JvstmIspnCodeGenerator</code.generator.class> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstmojb.codeGenerator.FenixCodeGeneratorOneBoxPerObject</code.generator.class> -->
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -31,7 +35,7 @@
                 <artifactId>ff-maven-plugin</artifactId>
                 <version>${version.fenixframework}</version>
                 <configuration>
-                    <codeGeneratorClassName>${fenixframework.code.generator}</codeGeneratorClassName>
+                    <codeGeneratorClassName>${code.generator.class}</codeGeneratorClassName>
                     <params>
                         <ptIstTxIntrospectorEnable>true</ptIstTxIntrospectorEnable>
                     </params>
@@ -45,6 +49,38 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-mem-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-infinispan-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-ogm-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-common-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-infinispan-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-ojb-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -74,33 +110,50 @@
 
         </plugins>
 
-	<pluginManagement><plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <!--<version>3.0</version>-->
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-	</plugins></pluginManagement>
+	<pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <!--<version>3.0</version>-->
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencies>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-mem</artifactId>
+            <artifactId>fenix-framework-backend-mem-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-infinispan</artifactId>
+            <artifactId>fenix-framework-backend-infinispan-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
-            <artifactId>fenix-framework-backend-ogm</artifactId>
+            <artifactId>fenix-framework-backend-ogm-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-common-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-infinispan-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-ojb-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
