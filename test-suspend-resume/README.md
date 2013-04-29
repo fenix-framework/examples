@@ -5,13 +5,13 @@ in an application using the Fenix Framework.
 
 It uses a REPL(Read-eval-print-loop) with the following commands:
 
-    add - adds a new person with a given name to the current transaction
-    list - lists all added persons
-    done - commits the transaction
-    cancel - rollbacks the transaction
-    rename - changes a name of an added person.
-    show - lists a person given its externalId
-    quit 
+    add     - adds a new person with a given name to the current transaction
+    cancel  - rollbacks current the transaction
+    done    - commits the transaction
+    list    - lists all added people to the transaction
+    quit    - exits the application
+    rename  - changes a name of a previously added person
+    show    - lists a person given its externalId
 
 In this application we use the file-based configuration.  The
 `fenix-framework-<backend-here>.properties` files allows for automatic
