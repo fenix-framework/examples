@@ -1,0 +1,21 @@
+package pt.ist.fenixframework.example.suspend.domain;
+
+class App;
+
+class Person {
+  String name;
+}
+
+relation AppHasPeople {
+  App playsRole app {
+    multiplicity 1..1;
+  }
+  Person playsRole person { 
+    multiplicity 0..*; 
+  }
+}
+
+relation DomainRootHasApplication {
+    App playsRole app;
+    .pt.ist.fenixframework.DomainRoot playsRole;
+}
