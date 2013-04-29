@@ -3,13 +3,13 @@ package pt.ist.fenixframework.example.suspend;
 import java.util.Scanner;
 
 import javax.transaction.SystemException;
+import javax.transaction.Transaction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.FenixFramework;
-import pt.ist.fenixframework.Transaction;
 import pt.ist.fenixframework.TransactionManager;
 import pt.ist.fenixframework.example.suspend.domain.App;
 import pt.ist.fenixframework.example.suspend.domain.Person;
@@ -177,7 +177,7 @@ public class SuspendTest {
 
     private void suspendTx() {
         try {
-            tx = (Transaction) tm.suspend();
+            tx = tm.suspend();
         } catch (SystemException e) {
             logger.error("Suspend transaction failed {}", e);
             throw new RuntimeException("Aborting operation, because suspend failed");
