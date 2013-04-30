@@ -22,6 +22,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- PLEASE KEEP THIS LIST SORTED ALPHABETICALLY!!!  THANKS -->
+        <version.c3p0>0.9.1.2</version.c3p0>
         <version.fenixframework>2.1-SNAPSHOT</version.fenixframework>
         <version.infinispan>5.1.6.FINAL</version.infinispan>
         <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
@@ -242,6 +243,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${version.mysql.driver}</version>
+        </dependency>
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${version.c3p0}</version>
         </dependency>
 
         <dependency>
