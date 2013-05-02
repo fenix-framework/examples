@@ -323,7 +323,7 @@ public class EBStats {
         int startIdx = (int) (rbe.speed(startMI-start) / 1000);
         int stopIdx = (int) (rbe.speed(startRD-start) / 1000);
 
-        int count = stopIdx - startIdx;
+        int count = stopIdx - startIdx + 1;
 
         if(count > 0) {
             double sum = 0;
