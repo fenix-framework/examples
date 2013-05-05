@@ -254,6 +254,7 @@ relation AppHasCustomers {
     App playsRole app;
     Customer playsRole customers {
 	multiplicity *;
+	indexed by uname;
     }
 }
 
@@ -261,6 +262,7 @@ relation AppHasBooks {
     App playsRole app;
     Book playsRole books {
 	multiplicity *;
+	indexed by i_id;
     }
 }
 
@@ -275,6 +277,7 @@ relation AppHasShoppingCarts {
     App playsRole app;
     ShoppingCart playsRole shoppingCarts {
 	multiplicity *;
+	indexed by sc_id;
     }
 }
 
@@ -289,6 +292,7 @@ relation AppHasCountries {
     App playsRole app;
     Country playsRole countries {
 	multiplicity *;
+	indexed by name;
     }
 }
 
