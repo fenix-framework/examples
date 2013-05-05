@@ -69,11 +69,10 @@ public class SuspendTest {
                 } else if (cmd.equals("show")) {
                     showPerson(scanner.nextLine().trim());
                 } else {
-                    logger.info("Unknown command: {}", cmd);
+                    System.out.println("Unknown command: " + cmd);
                 }
             } catch (Exception e) {
-                logger.error("Error during processing of command: {}", e);
-                e.printStackTrace();
+                System.out.println("Error during processing of command: " + e.getMessage());
             }
         }
     }
@@ -106,7 +105,7 @@ public class SuspendTest {
         resumeTx();
 
         for (Person p : app.getPersonSet()) {
-            logger.info("{} (externalId={}, {} )", p.getName(), p.getExternalId(), p);
+            System.out.println( p.getName() + " (externalId= " + p.getExternalId() + " , " + p + " )");
         }
 
         suspendTx();
@@ -135,9 +134,9 @@ public class SuspendTest {
 
         try {
             Person p = FenixFramework.getDomainObject(externalId);
-            logger.info("{} (externalId={}, {} )", p.getName(), p.getExternalId(), p);
+            System.out.println( p.getName() + " (externalId= " + p.getExternalId() + " , " + p + " )");
         } catch (Exception e) {
-            logger.error("Can't show person with externalid ={}: {}", externalId, e);
+            System.out.println("Can't show person with externalid = " + externalId + " : " + e);
         }
 
         suspendTx();
@@ -151,6 +150,7 @@ public class SuspendTest {
             finished = true;
         } catch (Exception e) {
             logger.error("Commit transaction failed {}", e);
+            throw new RuntimeException("Aborting operation, because commit failed");
         } finally {
             if (!finished) {
                 rollbackTx();
