@@ -97,7 +97,7 @@ import pt.ist.fenixframework.example.tpcw.domain.CCXact;
 
 // import com.arjuna.ats.arjuna.coordinator.TxControl;
 
-class TPCW_Populate implements Runnable {
+public class TPCW_Populate implements Runnable {
    private static final Void VOID = null;
 
    private static Random rand;
@@ -115,6 +115,7 @@ class TPCW_Populate implements Runnable {
    //that should be modified in order to rescale the DB.
    private static /* final */ int NUM_EBS = 10;
    private static /* final */ int NUM_ITEMS = 1000;
+   public static /* final */ boolean USE_INDEXES = false;
 
    private static /* final */ int NUM_CUSTOMERS = NUM_EBS * 2880;
    private static /* final */ int NUM_ADDRESSES = 2 * NUM_CUSTOMERS;
@@ -145,6 +146,9 @@ class TPCW_Populate implements Runnable {
 
            NUM_EBS = Integer.parseInt(args[0]);
            NUM_ITEMS = Integer.parseInt(args[1]);
+           if (args.length > 2) {
+               USE_INDEXES = Boolean.parseBoolean(args[2]);
+           }
 
            System.out.println("NUM_EBS = " + NUM_EBS);
            System.out.println("NUM_ITEMS = " + NUM_ITEMS);
@@ -893,18 +897,20 @@ class TPCW_Populate implements Runnable {
    }
 
    // constructor to get the parameters used by the Runnable interface
-   public TPCW_Populate(String numEbs, String numItems) {
+   public TPCW_Populate(String numEbs, String numItems, String indexes) {
       this.numEbs = numEbs;
       this.numItems = numItems;
+      this.indexes = indexes;
    }
 
    private final String numEbs;
    private final String numItems;
+   private final String indexes;
 
    // runnable interface
    public void run() {
       shouldStopCache = false;
-      this.main(numEbs, numItems);
+      this.main(numEbs, numItems, indexes);
    }
 
    private static void logProgress(String table, int tx, int numberOfTx) {
