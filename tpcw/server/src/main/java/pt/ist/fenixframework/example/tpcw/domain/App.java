@@ -20,6 +20,8 @@ import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.example.tpcw.Soundex;
 // import pt.ist.fenixframework.example.tpcw.TxSystem;
 
+import pt.ist.fenixframework.example.tpcw.populate.TPCW_Populate;
+
 import pt.ist.fenixframework.example.tpcw.domain.dto.BookComparatorByDateDescendingAndTitle;
 import pt.ist.fenixframework.example.tpcw.domain.dto.BookComparatorByOrderQuantityDesc;
 import pt.ist.fenixframework.example.tpcw.domain.dto.BookComparatorByTitle;
@@ -124,13 +126,17 @@ public class App extends App_Base {
     /*************************************************************************************/
 
     public Customer getCustomer(String username) {
-	for (Customer customer : getCustomersSet()) {
-	    String localUsername = customer.getUname();
-	    if ((localUsername == username) || (localUsername != null && localUsername.equals(username))) {
-		return customer;
+	if (TPCW_Populate.USE_INDEXES) {
+	    return getCustomersByUname(username);
+	} else {
+	    for (Customer customer : getCustomersSet()) {
+		String localUsername = customer.getUname();
+		if ((localUsername == username) || (localUsername != null && localUsername.equals(username))) {
+		    return customer;
+		}
 	    }
+	    return null;
 	}
-	return null;
     }
 
     public Customer getCustomer(int c_id) {
@@ -216,12 +222,16 @@ public class App extends App_Base {
     }
 
     public Book getBook(int i_id) {
-	for (Book book : getBooksSet()) {
-	    if (book.getI_id() == i_id) {
-		return book;
+	if (TPCW_Populate.USE_INDEXES) {
+	    return getBooksByI_id(i_id);
+	} else {
+	    for (Book book : getBooksSet()) {
+		if (book.getI_id() == i_id) {
+		    return book;
+		}
 	    }
+	    return null;
 	}
-	return null;
     }
 
     // public Book getRandomBook() {
@@ -302,12 +312,16 @@ public class App extends App_Base {
     }
 
     public ShoppingCart getCart(int sc_id) {
-	for (ShoppingCart shoppingCart : getShoppingCartsSet()) {
-	    if (shoppingCart.getSc_id() == sc_id) {
-		return shoppingCart;
+	if (TPCW_Populate.USE_INDEXES) {
+	    return getShoppingCartsBySc_id(sc_id);
+	} else {
+	    for (ShoppingCart shoppingCart : getShoppingCartsSet()) {
+		if (shoppingCart.getSc_id() == sc_id) {
+		    return shoppingCart;
+		}
 	    }
+	    return null;
 	}
-	return null;
     }
 
     public Orders getOrder(int o_id) {
@@ -330,13 +344,17 @@ public class App extends App_Base {
     }
 
     private Country getCountry(String countryName) {
-	for (Country country : getCountriesSet()) {
-	    String localName = country.getName();
-	    if (localName == countryName || (localName != null && localName.equals(countryName))) {
-		return country;
+	if (TPCW_Populate.USE_INDEXES) {
+	    return getCountriesByName(countryName);
+	} else {
+	    for (Country country : getCountriesSet()) {
+		String localName = country.getName();
+		if (localName == countryName || (localName != null && localName.equals(countryName))) {
+		    return country;
+		}
 	    }
+	    return null;
 	}
-	return null;
     }
 
     public Address findOrCreateAddress(String street1, String street2, String city, String state, String zip, String countryName) {
