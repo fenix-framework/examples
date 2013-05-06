@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan>
+    <!-- <global> -->
+        <!-- <globalJmxStatistics -->
+        <!--         enabled="true" -->
+        <!--         jmxDomain="org.infinispan"/> -->
+    <!-- </global> -->
+    <default>
+        <!-- <jmxStatistics enabled="true" /> -->
+
+        <loaders preload="false" shared="false">
+            <loader class="org.infinispan.loaders.file.FileCacheStore" purgeOnStartup="false">
+                <properties>
+                    <property name="location" value="target/Infinispan-FileCacheStore" />
+                </properties>
+            </loader>
+        </loaders>
+    </default>
+</infinispan>
+
