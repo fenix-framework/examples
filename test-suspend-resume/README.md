@@ -3,13 +3,13 @@
 This is a application that shows the basics of how to use transactions 
 in an application using the Fenix Framework. 
 
-The application provides a set of commands that allow the user to teste usage of
+The application provides a set of commands that allow the user to test the usage of
 transactions.
 
-Commands are run in one transaction untill a commit or a rollback of the
-transaction occures. This is achieved by suspending the running transaction 
+Commands are run in one transaction until a commit or a rollback of the
+transaction occurs. This is achieved by suspending the running transaction 
 at the end of each command, which implies that at the start of a command 
-we resume or start a transaction.
+we resume an existing transaction or start a new one.
 
 The application provides a REPL(Read-eval-print-loop) with the following commands:
 
