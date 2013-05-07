@@ -10,4 +10,5 @@ At the time of writing, at least the following have already been ported:
   * hello-world-multi-config
   * hs-example
   * tpcw
+  * test-suspend-resume
 
