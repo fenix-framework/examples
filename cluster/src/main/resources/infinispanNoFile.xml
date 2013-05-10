@@ -6,6 +6,11 @@
                 jmxDomain="org.infinispan"/>
         <transport
                 clusterName="infinispan-cluster">
+            <properties>
+                <property
+                        name="configurationFile"
+                        value="jgroups/fenix-framework-udp-jgroups.xml"/>
+            </properties>
         </transport>
     </global>
     <default>
@@ -30,7 +35,17 @@
                 lockingMode="OPTIMISTIC"
                 eagerLockSingleNode="false"
                 use1PcForAutoCommitTransactions="false"
-                autoCommit="true"/>
+                autoCommit="true">
+            <recovery enabled="false" />
+        </transaction>
+        <clustering mode="r">
+            <sync
+                    replTimeout="15000"/>
+            <stateTransfer
+                    fetchInMemoryState="true"
+                    chunkSize="100"
+                    timeout="240000"/>
+        </clustering>
         <versioning
                 enabled="true"
                 versioningScheme="SIMPLE"/>
