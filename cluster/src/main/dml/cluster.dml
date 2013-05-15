@@ -1,0 +1,15 @@
+package pt.ist.fenixframework.example.cluster;
+
+class Counter {
+  int value;
+}
+
+relation DomainRootHasCounter {
+    Counter playsRole counter;
+    .pt.ist.fenixframework.DomainRoot playsRole;
+}
+
+relation DomainRootHasOtherCounter {
+    Counter playsRole otherCounter;
+    .pt.ist.fenixframework.DomainRoot playsRole;
+}

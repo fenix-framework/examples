@@ -1,0 +1,156 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pt.ist.fenixframework.example</groupId>
+    <artifactId>cluster</artifactId>
+    <version>2.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>cluster</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <code.generator.class>pt.ist.fenixframework.backend.jvstm.JVSTMCodeGenerator</code.generator.class>
+
+        <version.fenixframework>2.1-SNAPSHOT</version.fenixframework>
+        <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
+        <version.slf4j.api>1.7.2</version.slf4j.api>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <proc>none</proc>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>pt.ist</groupId>
+                <artifactId>ff-maven-plugin</artifactId>
+                <version>${version.fenixframework}</version>
+                <configuration>
+                    <codeGeneratorClassName>${code.generator.class}</codeGeneratorClassName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>ff-generate-domain</goal>
+                            <goal>ff-post-compile</goal>
+                            <goal>ff-process-atomic-annotations</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-mem-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-infinispan-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-ogm-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-common-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-infinispan-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${version.maven.build-helper-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>target/generated-sources/dml-maven-plugin</directory>
+                                    <excludes>
+                                        <exclude>**/*.java</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-mem-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-infinispan-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-ogm-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-common-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-infinispan-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${version.slf4j.api}</version>
+        </dependency>
+    </dependencies>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>fenix-ashes-maven-repository</id>
+            <url>https://fenix-ashes.ist.utl.pt/maven-public</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>fenix-ashes-maven-repository</id>
+            <url>https://fenix-ashes.ist.utl.pt/maven-public</url>
+        </repository>
+    </repositories>
+
+</project>
