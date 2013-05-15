@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan>
+    <global>
+        <globalJmxStatistics
+                enabled="true"
+                jmxDomain="org.infinispan"/>
+        <transport
+                clusterName="infinispan-cluster">
+            <!-- <properties> -->
+            <!--     <property -->
+            <!--             name="configurationFile" -->
+            <!--             value="jgroups/jgroups.xml" /> -->
+            <!-- </properties> -->
+        </transport>
+    </global>
+    <default>
+        <locking
+                isolationLevel="REPEATABLE_READ"
+                concurrencyLevel="32"
+                writeSkewCheck="true"
+                useLockStriping="false"
+                lockAcquisitionTimeout="10000"/>
+        <jmxStatistics
+                enabled="true"/>
+        <deadlockDetection
+                enabled="true"/>
+        <transaction
+                transactionManagerLookupClass="org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup"
+                useEagerLocking="false"
+                transactionMode="TRANSACTIONAL"
+                syncRollbackPhase="false"
+                cacheStopTimeout="30000"
+                useSynchronization="false"
+                syncCommitPhase="false"
+                lockingMode="OPTIMISTIC"
+                eagerLockSingleNode="false"
+                use1PcForAutoCommitTransactions="false"
+                autoCommit="true"/>
+
+        <!-- <clustering mode="r"> -->
+        <!--     <sync -->
+        <!--             replTimeout="15000" /> -->
+        <!--     <stateTransfer -->
+        <!--             fetchInMemoryState="false" -->
+        <!--             chunkSize="100" -->
+        <!--             timeout="240000"/> -->
+        <!-- </clustering> -->
+        <versioning
+                enabled="true"
+                versioningScheme="SIMPLE"/>
+
+        <loaders preload="false" shared="false">
+            <loader class="org.infinispan.loaders.jdbc.stringbased.JdbcStringBasedCacheStore">
+            <!-- <loader class="org.infinispan.loaders.jdbc.stringbased.JdbcStringBasedCacheStore" -->
+            <!--         fetchPersistentState="true" -->
+            <!--         ignoreModifications="false" -->
+            <!--         purgeOnStartup="false"> -->
+                <properties>
+                    <property name="stringsTableNamePrefix" value="ISPN_TABLE" />
+                    <property name="idColumnName" value="ID_COLUMN" />
+                    <property name="idColumnType" value="VARCHAR(255)" />
+                    <property name="dataColumnName" value="DATA_COLUMN" />
+                    <property name="dataColumnType" value="BLOB" />
+                    <property name="timestampColumnName" value="TIMESTAMP_COLUMN" />
+                    <property name="timestampColumnType" value="BIGINT" />
+                    <property name="connectionFactoryClass"
+                              value="org.infinispan.loaders.jdbc.connectionfactory.PooledConnectionFactory" />
+                    <property name="connectionUrl" value="jdbc:mysql://localhost:13306/ffTpcwJvstmIspn" />
+                    <property name="userName" value="test" />
+                    <property name="password" value="test" />
+                    <property name="driverClass" value="com.mysql.jdbc.Driver" />
+                    <property name="dropTableOnExit" value="false" />
+                    <property name="createTableOnStart" value="true" />
+                </properties>
+            </loader>
+        </loaders>
+    </default>
+</infinispan>
+
