@@ -30,9 +30,8 @@ public class Print {
     @Atomic
     private static void printValue() {
         Counter counter = FenixFramework.getDomainRoot().getCounter();
-        if (counter != null) {
-            System.out.println("Current value = " + counter.getValue());
-        }
+        Counter otherCounter = FenixFramework.getDomainRoot().getOtherCounter();
+        System.out.println("Counter = " + (counter == null ? "N/A" : counter.getValue()) + "; OtherCounter = " + (otherCounter == null ? "N/A" : otherCounter.getValue()));
     }
 
 }

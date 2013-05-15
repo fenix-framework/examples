@@ -4,7 +4,12 @@ class Counter {
   int value;
 }
 
-relation DomainRootHasApplication {
+relation DomainRootHasCounter {
     Counter playsRole counter;
+    .pt.ist.fenixframework.DomainRoot playsRole;
+}
+
+relation DomainRootHasOtherCounter {
+    Counter playsRole otherCounter;
     .pt.ist.fenixframework.DomainRoot playsRole;
 }

@@ -6,16 +6,16 @@ import org.slf4j.LoggerFactory;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.FenixFramework;
 
-public class Increment {
+public class IncrementOther {
 
-    private static final Logger logger = LoggerFactory.getLogger(Increment.class);
+    private static final Logger logger = LoggerFactory.getLogger(IncrementOther.class);
 
     public static void main(final String[] args) {
         try {
-            ensureCounter();
+            ensureOtherCounter();
             while (true) {
                 logger.info("Increment loop");
-                incCounter();
+                incOtherCounter();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -29,19 +29,19 @@ public class Increment {
     }
 
     @Atomic(mode = Atomic.TxMode.WRITE)
-    private static void ensureCounter() {
-        Counter counter = FenixFramework.getDomainRoot().getCounter();
-        if (counter == null) {
-            logger.info("Create counter");
-            FenixFramework.getDomainRoot().setCounter(new Counter());
+    private static void ensureOtherCounter() {
+        Counter otherCounter = FenixFramework.getDomainRoot().getOtherCounter();
+        if (otherCounter == null) {
+            logger.info("Create otherCounter");
+            FenixFramework.getDomainRoot().setOtherCounter(new Counter());
         }
     }
 
     @Atomic(mode = Atomic.TxMode.WRITE)
-    private static void incCounter() {
+    private static void incOtherCounter() {
         logger.info("Increment tx");
-        Counter counter = FenixFramework.getDomainRoot().getCounter();
-        System.out.println("start value=" + counter.getAndInc());
+        Counter otherCounter = FenixFramework.getDomainRoot().getOtherCounter();
+        System.out.println("start value=" + otherCounter.getAndInc());
     }
 
 }
