@@ -67,6 +67,7 @@ public class TPCW_best_sellers_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       String url;
       PrintWriter out = res.getWriter();
 
@@ -160,5 +161,9 @@ public class TPCW_best_sellers_servlet extends HttpServlet {
       out.print("</BODY> </HTML>\n");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }

@@ -64,6 +64,7 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       HttpSession session = req.getSession(false);
 
       PrintWriter out = res.getWriter();
@@ -131,5 +132,9 @@ public class TPCW_order_inquiry_servlet extends HttpServlet {
       out.print("</CENTER></FORM></BODY></HTML>");		
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }

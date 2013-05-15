@@ -67,6 +67,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
     
     public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
 	Cart cart;
 	String url;
 	HttpSession session = req.getSession(false);
@@ -189,6 +190,10 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 	out.print("</CENTER></FORM></BODY></HTML>");
 	out.close();
 	return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }
 

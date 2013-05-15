@@ -94,6 +94,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       int i;
       String url;
       PrintWriter out = res.getWriter();
@@ -195,6 +196,10 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 		"</BLOCKQUOTE></BODY></HTML>");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
   }
 
 }

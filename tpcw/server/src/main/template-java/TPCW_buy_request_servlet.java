@@ -67,6 +67,7 @@ public class TPCW_buy_request_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       PrintWriter out = res.getWriter();
       String url;
       // Set the content type of this servlet's result.
@@ -267,5 +268,9 @@ public class TPCW_buy_request_servlet extends HttpServlet {
       out.print("</P></CENTER></BODY></HTML>");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
   }
 }

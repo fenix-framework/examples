@@ -65,7 +65,7 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
-
+      try {
       String url;
       HttpSession session = req.getSession(false);
       PrintWriter out = res.getWriter();
@@ -176,5 +176,9 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
       out.print("</BODY></HTML>");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }

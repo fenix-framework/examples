@@ -11,7 +11,7 @@ public class TPCW_Populate_Servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
-
+      try {
       String numItems  = req.getParameter("NUM_ITEMS");
       String numEbs = req.getParameter("NUM_EBS");
       String useIndexes = req.getParameter("USE_INDEXES");
@@ -53,5 +53,9 @@ public class TPCW_Populate_Servlet extends HttpServlet {
           out.close();
       }
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }

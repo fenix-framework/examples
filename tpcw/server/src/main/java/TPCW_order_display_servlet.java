@@ -64,6 +64,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
 
+      try {
       PrintWriter out = res.getWriter();
       HttpSession session = req.getSession(false);
       String C_ID = req.getParameter("C_ID");
@@ -128,6 +129,10 @@ public class TPCW_order_display_servlet extends HttpServlet {
     out.print("\"><IMG SRC=\"../tpcw/Images/home_B.gif\" " 
 	      + "ALT=\"Home\"></A></P></CENTER>\n");
     out.print("</CENTER></FORM></BODY></HTML>");		
+    } catch (Exception e) {
+       e.printStackTrace();
+       throw new RuntimeException(e);
+   }
   }
 
   private void printOrder(Order order, Vector lines, PrintWriter out){

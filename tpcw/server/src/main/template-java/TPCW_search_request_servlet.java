@@ -64,6 +64,7 @@ public class TPCW_search_request_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       PrintWriter out = res.getWriter();
     // Set the content type of this servlet's result.
       res.setContentType("text/html");
@@ -132,5 +133,9 @@ public class TPCW_search_request_servlet extends HttpServlet {
       out.print("</CENTER></P></FORM></BODY></HTML>");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }

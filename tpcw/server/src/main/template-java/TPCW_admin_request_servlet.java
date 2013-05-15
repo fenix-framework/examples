@@ -66,6 +66,7 @@ public class TPCW_admin_request_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       String url;
       PrintWriter out = res.getWriter();
 
@@ -155,5 +156,9 @@ public class TPCW_admin_request_servlet extends HttpServlet {
       out.print("</FORM></BODY></HTML>");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
     }
 }

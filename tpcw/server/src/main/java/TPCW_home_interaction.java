@@ -62,6 +62,7 @@ public class TPCW_home_interaction extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
     throws IOException, ServletException {
+      try {
       int i;	
       String url;
       Vector column1 = new Vector();
@@ -233,6 +234,10 @@ public class TPCW_home_interaction extends HttpServlet {
       out.print("</font> </BODY> </HTML>\n");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
   }
     
 }

@@ -66,6 +66,7 @@ public class TPCW_product_detail_servlet extends HttpServlet {
     
   public void doGet(HttpServletRequest req, HttpServletResponse res)
       throws IOException, ServletException {
+      try {
       String url;
       HttpSession session = req.getSession(false);
       String I_IDstr = req.getParameter("I_ID"); 
@@ -160,5 +161,9 @@ public class TPCW_product_detail_servlet extends HttpServlet {
       out.print("</BODY> </HTML>\n");
       out.close();
       return;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new RuntimeException(e);
+      }
   }
 }
