@@ -17,7 +17,7 @@ public class Increment {
                 logger.info("Increment loop");
                 incCounter();
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     logger.warn("Interrupted.", e);
                     break;
@@ -42,6 +42,10 @@ public class Increment {
         logger.info("Increment tx");
         Counter counter = FenixFramework.getDomainRoot().getCounter();
         System.out.println("start value=" + counter.getAndInc());
+//        for (int i = 0; i < 100; i++) {
+//            new Counter();
+//        }
+        FenixFramework.getDomainRoot().addClock(new Counter());
     }
 
 }

@@ -13,3 +13,10 @@ relation DomainRootHasOtherCounter {
     Counter playsRole otherCounter;
     .pt.ist.fenixframework.DomainRoot playsRole;
 }
+
+relation DomainRootHasCounterList {
+    Counter playsRole clock {
+        multiplicity *;
+    }
+    .pt.ist.fenixframework.DomainRoot playsRole owner;
+}
