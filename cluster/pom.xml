@@ -39,6 +39,9 @@
                 <version>${version.fenixframework}</version>
                 <configuration>
                     <codeGeneratorClassName>${code.generator.class}</codeGeneratorClassName>
+                    <params>
+                        <collectionClassName>pt.ist.fenixframework.adt.bplustree.BPlusTree</collectionClassName>
+                    </params>
                 </configuration>
                 <executions>
                     <execution>
@@ -50,6 +53,11 @@
                     </execution>
                 </executions>
                 <dependencies>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-ojb-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
                     <dependency>
                         <groupId>pt.ist</groupId>
                         <artifactId>fenix-framework-backend-mem-code-generator</artifactId>
@@ -107,6 +115,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-ojb-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
         <dependency>
             <groupId>pt.ist</groupId>
             <artifactId>fenix-framework-backend-mem-runtime</artifactId>
