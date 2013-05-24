@@ -608,10 +608,26 @@ public class TPCW_Populate implements Runnable {
       System.out.println("Populating COUNTRY with " + NUM_COUNTRIES + " countries");
 
       _counter = 0;
+      int numberOfTx = NUM_COUNTRIES/NUMBER_OBJECTS_TRANSACTION;
+
+      for(int i = 1; i <= numberOfTx; i++){
+         logProgress("COUNTRY", i, numberOfTx);
+         final int oldCounterValue = _counter;
+         txManager.withTransaction(new CallableWithoutException<Void>() {
+            public Void call() {
+               _counter = oldCounterValue;
+               createCountryObjects(NUMBER_OBJECTS_TRANSACTION);
+               return VOID;
+            }
+         });
+      }
+
       logProgress("COUNTRY");
+      //save the _counter value. needed when the transaction is retried
+      final int oldCounterValue = _counter;
       txManager.withTransaction(new CallableWithoutException<Void>() {
          public Void call() {
-            _counter = 0;
+            _counter = oldCounterValue;
             createCountryObjects(NUM_COUNTRIES%NUMBER_OBJECTS_TRANSACTION);
             return VOID;
          }
@@ -665,7 +681,7 @@ public class TPCW_Populate implements Runnable {
       };
 
       for(int i = 0; i < n ; i++){
-         Country country = new Country(countries[i], exchanges[i], currencies[i], i);
+         Country country = new Country(countries[_counter], exchanges[_counter], currencies[_counter], _counter);
          // txManager.save(country);
          country.setApp(FenixFramework.getDomainRoot().getApp());
          _countries[_counter++] = country.getExternalId();
