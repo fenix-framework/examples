@@ -73,6 +73,8 @@
     <!-- use tpcw servlets as the base for the war file -->
     <copy file="${lib.dir}/tpcw_servlets.jar" tofile="${app.war.file}" />
 
+    <copy file="conf/lb.conf" toDir="${build.dir}" />
+
     <jar destfile="${app.war.file}" update="true" >
       <zipfileset dir="${build.dir}"
 		  prefix="WEB-INF/classes" />
