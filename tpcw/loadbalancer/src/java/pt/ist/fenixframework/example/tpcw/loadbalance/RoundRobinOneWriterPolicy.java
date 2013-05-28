@@ -59,7 +59,7 @@ public class RoundRobinOneWriterPolicy extends RoundRobinPolicy {
 
     private boolean isWriteRequest(String servletPath) {
         boolean result = KNOWN_WRITE_REQUESTS.contains(servletPath);
-        System.out.println("REQUEST: " + servletPath + " is a " + (result?" write tx" : " read tx"));
+        // System.out.println("REQUEST: " + servletPath + " is a " + (result?" write tx" : " read tx"));
         return result;
     }
 
