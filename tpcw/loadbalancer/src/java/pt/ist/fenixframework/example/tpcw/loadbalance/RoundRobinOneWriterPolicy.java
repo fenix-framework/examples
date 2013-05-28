@@ -30,7 +30,7 @@ public class RoundRobinOneWriterPolicy extends RoundRobinPolicy {
     
 
     private int selector = 0;
-    private int numberOfReadOnlyServers;
+    private int numberOfServers;
     private int writeServerIndex;
 	
     public RoundRobinOneWriterPolicy(String[] serverAddresses) {
@@ -38,21 +38,16 @@ public class RoundRobinOneWriterPolicy extends RoundRobinPolicy {
         if (serverAddresses.length == 0) {
             throw new RuntimeException("We need at least one server to serve requests!!");
         }
-        numberOfReadOnlyServers = serverAddresses.length - 1;
+        numberOfServers = serverAddresses.length;
         writeServerIndex = serverAddresses.length - 1;
     }
 
-    // picks the same fixed server (last) if running a write transaction. roundrobin otherwise
+    // returns the last server for write requests and round robin all for read requests
     private String getNextServerAddress(String servletPath) {
-        if (numberOfReadOnlyServers == 0) {  // there is only one server anyway... :-(
-            return serverAddresses[0];
-        }
-
-        // there is more than one server. return the last for write requests and round robin the other for read requests
         if (isWriteRequest(servletPath)) {
             return serverAddresses[writeServerIndex];
         } else {
-            int serverIndex = selector++ % numberOfReadOnlyServers;
+            int serverIndex = selector++ % numberOfServers;
             return serverAddresses[serverIndex];
         }
     }
