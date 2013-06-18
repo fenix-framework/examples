@@ -83,6 +83,11 @@
                         <artifactId>fenix-framework-backend-jvstm-infinispan-code-generator</artifactId>
                         <version>${version.fenixframework}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>pt.ist</groupId>
+                        <artifactId>fenix-framework-backend-jvstm-datagrid-code-generator</artifactId>
+                        <version>${version.fenixframework}</version>
+                    </dependency>
                 </dependencies>
             </plugin>
 
@@ -143,6 +148,11 @@
         <dependency>
             <groupId>pt.ist</groupId>
             <artifactId>fenix-framework-backend-jvstm-infinispan-runtime</artifactId>
+            <version>${version.fenixframework}</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-jvstm-datagrid-runtime</artifactId>
             <version>${version.fenixframework}</version>
         </dependency>
         <dependency>
