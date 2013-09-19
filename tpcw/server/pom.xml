@@ -23,7 +23,7 @@
 
         <!-- PLEASE KEEP THIS LIST SORTED ALPHABETICALLY!!!  THANKS -->
         <version.c3p0>0.9.1.2</version.c3p0>
-        <version.fenixframework>2.3.0-SNAPSHOT</version.fenixframework>
+        <version.fenixframework>2.4.0-SNAPSHOT</version.fenixframework>
         <version.infinispan>5.1.6.FINAL</version.infinispan>
         <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
         <version.maven.tomcat-plugin>2.0</version.maven.tomcat-plugin>
