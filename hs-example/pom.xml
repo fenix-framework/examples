@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <version.fenixframework>2.4.0-SNAPSHOT</version.fenixframework>
+        <version.fenixframework>2.5.0-SNAPSHOT</version.fenixframework>
 
         <!-- PLEASE KEEP THIS LIST SORTED ALPHABETICALLY!!!  THANKS -->
         <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
